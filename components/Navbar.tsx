@@ -10,10 +10,11 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-cream border-b border-olive/20">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="font-serif text-2xl tracking-widest text-olive font-bold">
+        <Link href="/" className="font-serif text-xl md:text-2xl tracking-widest text-olive font-bold">
           ZIRA BOUTIQUE
         </Link>
         
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-8 text-sm uppercase tracking-widest text-olive">
           {categories.map((cat) => (
             <Link key={cat} href={`/shop/${cat.toLowerCase()}`} className="hover:text-gold transition-colors">
@@ -30,6 +31,15 @@ export function Navbar() {
             </span>
           )}
         </Link>
+      </div>
+
+      {/* Mobile Scrollable Navigation */}
+      <div className="md:hidden flex overflow-x-auto whitespace-nowrap border-t border-olive/10 px-6 py-3 gap-6 text-xs uppercase tracking-widest text-olive">
+        {categories.map((cat) => (
+          <Link key={cat} href={`/shop/${cat.toLowerCase()}`} className="hover:text-gold transition-colors">
+            {cat}
+          </Link>
+        ))}
       </div>
     </header>
   );
