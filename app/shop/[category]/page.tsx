@@ -1,7 +1,14 @@
 import { Navbar } from "@/components/Navbar";
 import { ProductCard } from "@/components/ProductCard";
-import { products } from "@/lib/products";
+import { products, categories } from "@/lib/products";
 import { notFound } from "next/navigation";
+
+// THIS IS THE FIX: Tell Next.js which pages to build at compile time
+export function generateStaticParams() {
+  return categories.map((cat) => ({
+    category: cat.toLowerCase(),
+  }));
+}
 
 export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
   const { category } = await params;
